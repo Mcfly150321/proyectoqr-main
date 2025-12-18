@@ -17,6 +17,8 @@ CORS(app)
 @app.route("/")
 def index():
     return send_from_directory(".", "index.html")
+
+@app.route('/procesar', methods=['POST'])
 def procesar():
     # --- TODO ESTO DEBE TENER 4 ESPACIOS HACIA LA DERECHA ---
     try:
@@ -114,5 +116,6 @@ def procesar():
 # FUERA de la función
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000)
+
 
 
