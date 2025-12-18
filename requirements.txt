@@ -3,4 +3,5 @@ flask-cors
 gunicorn
 qrcode
 pillow
+segno
 fpdf
