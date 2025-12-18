@@ -4,4 +4,4 @@ gunicorn
 qrcode
 pillow
 segno
-fpdf
+fpdf2
