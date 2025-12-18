@@ -5,3 +5,4 @@ qrcode
 pillow
 segno
 fpdf2
+resend
