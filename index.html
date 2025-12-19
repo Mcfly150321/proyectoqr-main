@@ -1,131 +1,39 @@
 <!DOCTYPE html>
 <html lang="es">
-<<<<<<< HEAD
-
-=======
->>>>>>> 462e3898c6c7e25175c4cc99b6664fb239f0d494
 <head>
+    <!-- En el <head> -->
+<link rel="stylesheet" href="style.css">
     <meta charset="UTF-8">
     <title>Generador de QR y Envío</title>
-    <style>
-<<<<<<< HEAD
-        body {
-            font-family: sans-serif;
-            display: flex;
-            justify-content: center;
-            padding: 50px;
-            background: #f4f4f9;
-        }
-
-        .card {
-            background: white;
-            padding: 25px;
-            border-radius: 8px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-            width: 350px;
-        }
-
-        input {
-            width: 100%;
-            padding: 10px;
-            margin: 10px 0;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            box-sizing: border-box;
-        }
-
-        button {
-            width: 100%;
-            padding: 12px;
-            background: #0306b1;
-            color: white;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            font-weight: bold;
-        }
-
-        button:hover {
-            background: #218838;
-        }
-
-        #estado {
-            margin-top: 15px;
-            font-size: 0.9em;
-            text-align: center;
-        }
-    </style>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
 </head>
-
+<!-- Al final, antes de </body> -->
+<script src="animations.js"></script>
 <body>
 
     <div class="card">
-        <h3>Registro de Usuario</h3>
-        <input type="text" id="nombre" placeholder="Nombre completo">
-        <input type="email" id="correo" placeholder="Correo electrónico">
-        <input type="text" id="url_qr" placeholder="URL para el QR (ej: https://...)">
+        <h3>Generador de QR</h3>
+        <p class="subtitle">Ingresa tus datos para generar el código</p>
+        
+        <div class="input-group">
+            <label>Nombre</label>
+            <input type="text" id="nombre" placeholder="Juan Pérez">
+        </div>
 
+        <div class="input-group">
+            <label>Correo</label>
+            <input type="email" id="correo" placeholder="hola@ejemplo.com">
+        </div>
+
+        <div class="input-group">
+            <label>URL o Contenido</label>
+            <input type="text" id="url_qr" placeholder="https://tu-sitio.com">
+        </div>
+        
         <button onclick="enviarDatos()">Generar y Enviar</button>
-        <p id="estado"></p>
+        <div id="estado"></div>
     </div>
-
-    <script>
-        async function enviarDatos() {
-            const datos = {
-                nombre: document.getElementById('nombre').value,
-                correo: document.getElementById('correo').value,
-                url_qr: document.getElementById('url_qr').value
-            };
-
-            const estado = document.getElementById('estado');
-            estado.innerText = "Procesando...";
-            estado.style.color = "blue";
-
-            try {
-                // Reemplaza con la URL de tu app en Render cuando la subas
-                const response = await fetch("/procesar", {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(datos)
-                });
-
-                if (response.ok) {
-                    estado.innerText = "¡Éxito! PDF generado y correo enviado.";
-                    estado.style.color = "green";
-                } else {
-                    estado.innerText = "Hubo un error en el servidor.";
-                    estado.style.color = "red";
-                }
-            } catch (error) {
-                estado.innerText = "No se pudo conectar con el servidor.";
-                estado.style.color = "red";
-            }
-        }
-    </script>
-
-</body>
-
-</html>
-=======
-        body { font-family: sans-serif; display: flex; justify-content: center; padding: 50px; background: #f4f4f9; }
-        .card { background: white; padding: 25px; border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); width: 350px; }
-        input { width: 100%; padding: 10px; margin: 10px 0; border: 1px solid #ddd; border-radius: 4px; box-sizing: border-box; }
-        button { width: 100%; padding: 12px; background: #28a745; color: white; border: none; border-radius: 4px; cursor: pointer; font-weight: bold; }
-        button:hover { background: #218838; }
-        #estado { margin-top: 15px; font-size: 0.9em; text-align: center; }
-    </style>
-</head>
-<body>
-
-<div class="card">
-    <h3>Registro de Usuario</h3>
-    <input type="text" id="nombre" placeholder="Nombre completo">
-    <input type="email" id="correo" placeholder="Correo electrónico">
-    <input type="text" id="url_qr" placeholder="URL para el QR (ej: https://...)">
-    
-    <button onclick="enviarDatos()">Generar y Enviar</button>
-    <p id="estado"></p>
-</div>
 
 <script>
     async function enviarDatos() {
@@ -165,7 +73,3 @@
 
 </html>
 
-
-
-
->>>>>>> 462e3898c6c7e25175c4cc99b6664fb239f0d494
