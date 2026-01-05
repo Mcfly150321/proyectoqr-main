@@ -48,7 +48,7 @@
 
             try {
                 // Reemplaza con la URL de tu app en Render cuando la subas
-                const response = await fetch("/procesar", {
+                const response = await fetch("/api/procesar", {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify(datos)

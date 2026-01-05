@@ -3,9 +3,9 @@ from flask import Flask, request, jsonify, send_from_directory
 from flask_cors import CORS
 
 # Importar módulos locales
-from qr import generar_qr
-from pdf import generar_pdf
-from mail import enviar_correo
+from api.qr import generar_qr
+from api.pdf import generar_pdf
+from api.mail import enviar_correo
 
 app = Flask(__name__)
 CORS(app)
