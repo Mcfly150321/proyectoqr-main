@@ -14,7 +14,7 @@ CORS(app)
 def index():
     return send_from_directory(".", "index.html")
 
-@app.route('/procesar', methods=['POST'])
+@app.route('/', methods=['POST'])
 def procesar():
     qr_path = None
     pdf_path = None
