@@ -10,6 +10,7 @@ from api.mail import enviar_correo
 app = Flask(__name__)
 CORS(app)
 
+@app.route('/api', methods=['GET', 'POST'])
 @app.route('/', methods=['GET', 'POST'])
 def procesar():
     if request.method == 'GET':
