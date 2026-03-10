@@ -24,6 +24,7 @@ def procesar():
         nombre_original = datos.get('nombre')
         correo = datos.get('correo')
         url_para_qr = datos.get('url_qr')
+        color_qr = datos.get('color', '#000000')
 
         if not all([nombre_original, correo, url_para_qr]):
             return jsonify({"status": "error", "message": "Faltan datos requeridos"}), 400
@@ -31,13 +32,13 @@ def procesar():
         nombre_limpio = nombre_original.replace(" ", "_")
 
         # 2. Generar QR
-        qr_path = generar_qr(url_para_qr, nombre_limpio)
+        qr_path = generar_qr(url_para_qr, nombre_limpio, color_qr)
 
         # 3. Generar PDF
         pdf_path = generar_pdf(nombre_limpio, qr_path)
 
         # 4. Enviar Correo
-        enviar_correo(nombre_original, correo, pdf_path, qr_path)
+        enviar_correo(nombre_original, correo, pdf_path, qr_path, url_para_qr)
 
         print(f"✅ Éxito: Procesado para {nombre_original}")
         return jsonify({"status": "ok", "message": "Proceso completado"}), 200

@@ -30,24 +30,31 @@
             <input type="text" id="url_qr" placeholder="https://tu-sitio.com">
         </div>
 
-        <button onclick="enviarDatos()">Generar y Enviar</button>
+        <div class="input-group">
+            <label>Color del QR</label>
+            <input type="color" id="color_qr" value="#24d900">
+        </div>
+
+        <button id="btnEnviar" onclick="enviarDatos()">Generar y Enviar</button>
         <div id="estado"></div>
     </div>
 
     <script>
         async function enviarDatos() {
+            const btn = document.getElementById('btnEnviar');
             const datos = {
                 nombre: document.getElementById('nombre').value,
                 correo: document.getElementById('correo').value,
-                url_qr: document.getElementById('url_qr').value
+                url_qr: document.getElementById('url_qr').value,
+                color: document.getElementById('color_qr').value
             };
 
             const estado = document.getElementById('estado');
             estado.innerText = "Procesando...";
             estado.style.color = "#1E90FF";
+            btn.disabled = true;
 
             try {
-                // Reemplaza con la URL de tu app en Render cuando la subas
                 const response = await fetch("/api", {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
@@ -64,6 +71,8 @@
             } catch (error) {
                 estado.innerText = "No se pudo conectar con el servidor.";
                 estado.style.color = "#EF4444";
+            } finally {
+                btn.disabled = false;
             }
         }
     </script>
