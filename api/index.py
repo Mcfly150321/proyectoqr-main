@@ -11,8 +11,8 @@ app = Flask(__name__)
 CORS(app)
 
 @app.route("/")
-def index():
-    return send_from_directory(".", "index.html")
+def home():
+    return jsonify({"status": "ok", "message": "API is running"}), 200
 
 @app.route('/', methods=['POST'])
 def procesar():
