@@ -10,8 +10,11 @@ from api.mail import enviar_correo
 app = Flask(__name__)
 CORS(app)
 
-@app.route('/', methods=['POST'])
+@app.route('/', methods=['GET', 'POST'])
 def procesar():
+    if request.method == 'GET':
+        return jsonify({"status": "ok", "message": "API script is ready for POST"}), 200
+    
     qr_path = None
     pdf_path = None
     try:
