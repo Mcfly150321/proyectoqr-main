@@ -10,10 +10,6 @@ from api.mail import enviar_correo
 app = Flask(__name__)
 CORS(app)
 
-@app.route("/")
-def home():
-    return jsonify({"status": "ok", "message": "API is running"}), 200
-
 @app.route('/', methods=['POST'])
 def procesar():
     qr_path = None
