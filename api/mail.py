@@ -18,7 +18,7 @@ def enviar_correo(nombre_original, correo_destino, pdf_path, qr_path):
         image_data = list(f.read())
 
     params = {
-        "from": "Arturo Maldonado <noreply@arturomaldonadoportafolio.space>",
+        "from": "Arturo Maldonado <noreply@arturomaldonado.space>",
         "to": correo_destino,
         "subject": "Tu Código QR solicitado",
         "html": f"""
