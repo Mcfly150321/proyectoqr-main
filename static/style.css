@@ -56,8 +56,8 @@ body::before {
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
     border: 1px solid var(--glass-border);
-    padding: 40px;
-    border-radius: 32px;
+    padding: 30px;
+    border-radius: 24px;
     box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
     position: relative;
     z-index: 1;
@@ -77,24 +77,31 @@ body::before {
 
 h3 {
     margin-top: 0;
-    margin-bottom: 8px;
-    font-size: 1.8rem;
+    margin-bottom: 5px;
+    font-size: 1.5rem;
 }
 
 .subtitle {
     color: var(--text-dim);
-    margin-bottom: 25px;
-    font-size: 0.95rem;
+    margin-bottom: 15px;
+    font-size: 0.9rem;
 }
 
 .mt-3 {
     margin-top: 20px;
 }
 
+.mobile-hint {
+    display: none;
+    color: #4ade80;
+    font-weight: 600;
+    display: none; /* Se oculta por defecto en PC */
+}
+
 .row {
     display: flex;
-    gap: 15px;
-    margin-bottom: 20px;
+    gap: 12px;
+    margin-bottom: 12px;
 }
 
 .half {
@@ -106,7 +113,7 @@ h3 {
 }
 
 .input-group {
-    margin-bottom: 20px;
+    margin-bottom: 12px;
 }
 
 .row .input-group {
@@ -115,24 +122,24 @@ h3 {
 
 .input-group label {
     display: block;
-    font-size: 0.85rem;
+    font-size: 0.8rem;
     color: var(--text-dim);
-    margin-bottom: 8px;
+    margin-bottom: 4px;
     margin-left: 4px;
 }
 
 input[type="text"], input[type="number"], select {
     width: 100%;
-    padding: 14px;
+    padding: 10px 12px;
     background: rgba(255, 255, 255, 0.07);
     border: 1px solid rgba(255, 255, 255, 0.15);
-    border-radius: 12px;
+    border-radius: 8px;
     color: white;
     box-sizing: border-box;
     transition: all 0.3s;
     backdrop-filter: blur(4px);
     font-family: 'Outfit', sans-serif;
-    font-size: 1rem;
+    font-size: 0.95rem;
 }
 
 select option {
@@ -149,11 +156,11 @@ input[type="text"]:focus, input[type="number"]:focus, select:focus {
 
 input[type="color"] {
     width: 100%;
-    height: 50px;
-    padding: 5px;
+    height: 40px;
+    padding: 4px;
     background: rgba(255, 255, 255, 0.07);
     border: 1px solid rgba(255, 255, 255, 0.15);
-    border-radius: 12px;
+    border-radius: 8px;
     cursor: pointer;
 }
 
@@ -189,15 +196,15 @@ input[type="color"]::-webkit-color-swatch {
 
 button {
     width: 100%;
-    padding: 16px;
-    margin-top: 10px;
+    padding: 12px;
+    margin-top: 5px;
     background: linear-gradient(135deg, #4a7ede 0%, #22c55e 100%);
     color: #ffffff;
     border: none;
-    border-radius: 16px;
+    border-radius: 12px;
     cursor: pointer;
     font-weight: 700;
-    font-size: 1.1rem;
+    font-size: 1rem;
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     box-shadow: 0 4px 15px rgba(34, 197, 94, 0.3);
 }
@@ -214,10 +221,15 @@ button:hover {
     align-items: center;
     background: white;
     border-radius: 20px;
-    padding: 20px;
+    padding: 15px;
     margin-top: 20px;
     overflow: hidden;
-    min-height: 300px;
+    aspect-ratio: 1 / 1;
+    width: 100%;
+    box-sizing: border-box;
+    max-width: 330px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 #canvas {
@@ -225,10 +237,13 @@ button:hover {
     justify-content: center;
     align-items: center;
     width: 100%;
+    height: 100%;
 }
 
 #canvas svg, #canvas canvas {
     max-width: 100%;
+    max-height: 100%;
+    width: auto !important;
     height: auto !important;
 }
 
@@ -258,5 +273,11 @@ button:hover {
     }
     .card {
         padding: 30px 20px;
+        max-height: none;
+        overflow-y: visible;
+    }
+    .mobile-hint {
+        display: block; /* Se muestra en celular */
+        margin-top: 8px;
     }
 }
