@@ -11,8 +11,8 @@
 
 body {
     margin: 0;
-    min-height: 100vh;
-    min-height: 100dvh;
+    height: 100vh; /* Fijo en PC para evitar scroll */
+    overflow: hidden; /* Ocultar scroll en PC */
     display: flex;
     align-items: center;
     justify-content: center;
@@ -24,19 +24,31 @@ body {
     position: relative;
 }
 
-/* El círculo de luz que se ve en el mockup */
 body::before {
     content: '';
     position: absolute;
-    width: 400px;
-    height: 400px;
+    width: 600px;
+    height: 600px;
     background: var(--primary);
     filter: blur(150px);
     border-radius: 50%;
     z-index: -1;
-    top: 10%;
-    left: 10%;
-    opacity: 0.3;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    opacity: 0.25;
+    pointer-events: none;
+}
+
+.container {
+    display: flex;
+    flex-direction: row;
+    gap: 30px;
+    width: 100%;
+    max-width: 1100px;
+    align-items: center; /* Centrar items de los paneles a nivel vertical */
+    justify-content: center; /* Centrar contenedor a nivel horizontal */
+    margin: auto;
 }
 
 .card {
@@ -46,40 +58,70 @@ body::before {
     border: 1px solid var(--glass-border);
     padding: 40px;
     border-radius: 32px;
-    width: 80%;
-    max-width: 380px;
     box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
-    text-align: center;
     position: relative;
     z-index: 1;
-    margin: 0 auto;
+    box-sizing: border-box;
+}
+
+.controls-panel {
+    flex: 1.2;
+}
+
+.preview-panel {
+    flex: 0.8;
+    text-align: center;
+    position: sticky;
+    top: 40px;
 }
 
 h3 {
+    margin-top: 0;
     margin-bottom: 8px;
     font-size: 1.8rem;
 }
 
 .subtitle {
     color: var(--text-dim);
-    margin-bottom: 30px;
-    font-size: 0.9rem;
+    margin-bottom: 25px;
+    font-size: 0.95rem;
+}
+
+.mt-3 {
+    margin-top: 20px;
+}
+
+.row {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.half {
+    flex: 1;
+}
+
+.third {
+    flex: 1;
 }
 
 .input-group {
-    text-align: left;
     margin-bottom: 20px;
+}
+
+.row .input-group {
+    margin-bottom: 0;
 }
 
 .input-group label {
     display: block;
-    font-size: 0.8rem;
+    font-size: 0.85rem;
     color: var(--text-dim);
     margin-bottom: 8px;
     margin-left: 4px;
 }
 
-input {
+input[type="text"], input[type="number"], select {
     width: 100%;
     padding: 14px;
     background: rgba(255, 255, 255, 0.07);
@@ -89,29 +131,73 @@ input {
     box-sizing: border-box;
     transition: all 0.3s;
     backdrop-filter: blur(4px);
+    font-family: 'Outfit', sans-serif;
+    font-size: 1rem;
 }
 
-input:focus {
+select option {
+    background: #1e1b4b;
+    color: white;
+}
+
+input[type="text"]:focus, input[type="number"]:focus, select:focus {
     outline: none;
     background: rgba(255, 255, 255, 0.12);
     border-color: #4ade80;
     box-shadow: 0 0 15px rgba(74, 222, 128, 0.1);
 }
 
-input::placeholder {
-    color: rgba(255, 255, 255, 0.3);
+input[type="color"] {
+    width: 100%;
+    height: 50px;
+    padding: 5px;
+    background: rgba(255, 255, 255, 0.07);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 12px;
+    cursor: pointer;
+}
+
+input[type="color"]::-webkit-color-swatch-wrapper {
+    padding: 0;
+}
+
+input[type="color"]::-webkit-color-swatch {
+    border: none;
+    border-radius: 8px;
+}
+
+.checkbox-group {
+    display: flex;
+    align-items: center;
+}
+
+.checkbox-label {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    font-size: 0.95rem;
+    margin-left: 4px;
+}
+
+.checkbox-label input {
+    width: 20px;
+    height: 20px;
+    accent-color: #22c55e;
+    cursor: pointer;
 }
 
 button {
     width: 100%;
     padding: 16px;
+    margin-top: 10px;
     background: linear-gradient(135deg, #4a7ede 0%, #22c55e 100%);
     color: #ffffff;
     border: none;
     border-radius: 16px;
     cursor: pointer;
     font-weight: 700;
-    font-size: 1rem;
+    font-size: 1.1rem;
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     box-shadow: 0 4px 15px rgba(34, 197, 94, 0.3);
 }
@@ -122,19 +208,55 @@ button:hover {
     filter: brightness(1.1);
 }
 
+.canvas-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: white;
+    border-radius: 20px;
+    padding: 20px;
+    margin-top: 20px;
+    overflow: hidden;
+    min-height: 300px;
+}
+
+#canvas {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+#canvas svg, #canvas canvas {
+    max-width: 100%;
+    height: auto !important;
+}
+
 /* Celulares */
-@media (max-width: 480px) {
+@media (max-width: 768px) {
     body {
-        padding: 15px 0;
-        align-items: center; /* Asegura el centrado vertical en flex */
+        height: auto;
+        min-height: 100vh;
+        overflow-y: auto; /* Habilitar scroll en móviles */
+        padding: 20px;
+    }
+    .container {
+        flex-direction: column;
+        align-items: center;
+    }
+    .preview-panel {
+        position: static;
+        width: 100%;
+        max-width: 400px; /* Limitar ancho en celulares */
+    }
+    .controls-panel {
+        width: 100%;
+    }
+    .row {
+        flex-direction: column;
+        gap: 15px;
     }
     .card {
-        width: 80%;
         padding: 30px 20px;
-        border-radius: 24px;
-        margin: auto; /* Ayuda adicional para centrado en flex */
-    }
-    h3 {
-        font-size: 1.5rem;
     }
 }
